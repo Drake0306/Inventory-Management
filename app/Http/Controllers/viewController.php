@@ -38,6 +38,7 @@ class viewController extends Controller
         $CompanyAdd = new Company();
         $CompanyAdd->name = $request->companyName;
         $CompanyAdd->location = $request->locationName;
+        $CompanyAdd->created_at = date('Y-m-d');
         $CompanyAdd->save();
 
         Session::flash('message', 'Created Successfully'); 

@@ -49,8 +49,8 @@ Php Verson should be around 7.2
 
 -- COMPOSER UPDATE --
 
-Run this is MYSQL8 CMD TO FIX ERRORS
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';
+Run this is MYSQL8 CMD TO FIX ERRORS<br>
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';<br>
 
-USE MySQL Installer 8.0.28
+USE MySQL Installer 8.0.28<br>
 https://dev.mysql.com/downloads/windows/installer/8.0.html

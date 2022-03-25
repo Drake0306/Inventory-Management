@@ -13,7 +13,7 @@
                             </button>
                         </div>
                     </h4>
-                    <p class="card-description">Top - 8  <code>( Descending Order )</code>
+                    <p class="card-description">Top - 8 <code>( Descending Order )</code>
                     </p>
                     <div class="table-responsive">
                         <table class="table">
@@ -27,24 +27,21 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($subCategory as $key => $item)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Computer</td>
-                                    <td>CPU</td>
+                                    <td>{{$key + 1}}</td>
+                                    <td>{{$item->categoryName}}</td>
+                                    <td>{{$item->sub_categoryName}}</td>
+                                    @if($item->status == true)
                                     <td><label class="badge bg-success">Active</label></td>
+                                    @else
+                                    <td><label class="badge bg-warning text-dark">In-Active</label></td>
+                                    @endif
                                     <td><i class="mdi mdi-border-color" data-bs-toggle="modal"
-                                            data-bs-target="#updateSub-Category"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Food</td>
-                                    <td>Rice</td>
-                                    <td><label class="badge bg-danger">In Active</label></td>
-                                    <td><i class="mdi mdi-border-color" data-bs-toggle="modal"
-                                            data-bs-target="#updateSub-Category"></i></td>
+                                            data-bs-target="#updateSub-Category{{$item->id}}"></i></td>
                                 </tr>
                                 <!-- Modal Create-->
-                                <div class="modal fade" id="updateSub-Category" data-bs-backdrop="static"
+                                <div class="modal fade" id="updateSub-Category{{$item->id}}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
@@ -57,22 +54,37 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <form method="POST" id="subForm"
-                                                action="{{url('/master/sub-Category/update/1')}}">
+                                                action="{{url('/master/sub-category/update/'.$item->id)}}">
                                                 @csrf
                                                 <div class="modal-body">
                                                     <div class="form-floating">
-                                                        <select class="form-select" id="categoryList" name="categoryId" aria-label="Floating label select example">
-                                                          <option selected>Select</option>
-                                                          <option value="1">One</option>
-                                                          <option value="2">Two</option>
-                                                          <option value="3">Three</option>
+                                                        <select class="form-select" id="categoryList" name="categoryId"
+                                                            aria-label="Floating label select example">
+
+                                                            <option selected value="{{$item->categoryID}}">
+                                                                {{$item->categoryName}}</option>
+                                                            <option disabled></option>
+
+                                                            @foreach($category as $val)
+                                                            <option value="{{$val->id}}">{{$val->name}}</option>
+                                                            @endforeach
+
                                                         </select>
-                                                        <label for="categoryList">Category List * </label>
-                                                      </div>
+                                                        <label for="categoryList">Category List * {{$item->categoryID}}</label>
+                                                    </div>
                                                     <div class="form-floating mt-3">
-                                                        <input type="text" class="form-control" name="subCategoryName" id="Sub-CategoryName" placeholder=""
+                                                        <input type="text" class="form-control" name="subCategoryName"
+                                                            id="Sub-CategoryName" placeholder="" value="{{$item->sub_categoryName}}"
                                                             aria-label="Sub-CategoryName" required>
                                                         <label for="Sub-CategoryName">Sub-Category Name *</label>
+                                                    </div>
+                                                    <div class="col-md-6 mt-2">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="status" value="{{$item->status}}" id="flexCheckDefault" @if($item->status == 1) checked @endif>
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                              Status
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -85,8 +97,10 @@
                                     </div>
                                 </div>
                                 {{-- Model End --}}
+                                @endforeach
                             </tbody>
                         </table>
+                        {{@$subCategory->links()}}
                     </div>
                 </div>
             </div>
@@ -105,21 +119,22 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" id="subForm" action="{{url('/master/sub-Category/create')}}">
+            <form method="POST" id="subForm" action="{{url('/master/sub-category/create')}}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-floating">
-                        <select class="form-select" id="categoryList" name="categoryId" aria-label="Floating label select example">
-                          <option selected>Select</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select class="form-select" id="categoryList" name="categoryId"
+                            aria-label="Floating label select example">
+                            <option selected>Select</option>
+                            @foreach($category as $val)
+                            <option value="{{$val->id}}">{{$val->name}}</option>
+                            @endforeach
                         </select>
                         <label for="categoryList">Category List * </label>
-                      </div>
+                    </div>
                     <div class="form-floating mt-3">
-                        <input type="text" class="form-control" name="subCategoryName" id="Sub-CategoryName" placeholder=""
-                            aria-label="Sub-CategoryName" required>
+                        <input type="text" class="form-control" name="subCategoryName" id="Sub-CategoryName"
+                            placeholder="" aria-label="Sub-CategoryName" required>
                         <label for="Sub-CategoryName">Sub-Category Name *</label>
                     </div>
                 </div>

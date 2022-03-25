@@ -28,17 +28,17 @@ Route::post('/master/company/update/{id}','viewController@companyMasterUpdate');
 Route::get('/dashboard','viewController@dashboardView');
 
 //Master
-Route::get('/master/category','viewController@catagoryMaster'); //category
-Route::post('/master/category/create','viewController@catagoryMasterCreate'); //category
-Route::post('/master/category/update/{id}','viewController@catagoryMasterUpdate'); //category
+Route::get('/master/category','categoryController@catagoryMaster'); //category
+Route::post('/master/category/create','categoryController@catagoryMasterCreate'); //category
+Route::post('/master/category/update/{id}','categoryController@catagoryMasterUpdate'); //category
 
-Route::get('/master/sub-category','viewController@subCatagoryMaster'); //sub-category
-Route::post('/master/sub-category/create','viewController@subCatagoryMasterCreate'); //sub-category
-Route::post('/master/sub-category/update/{id}','viewController@subCatagoryMasterUpdate'); //sub-category
+Route::get('/master/sub-category','subCategoryController@subCatagoryMaster'); //sub-category
+Route::post('/master/sub-category/create','subCategoryController@subCatagoryMasterCreate'); //sub-category
+Route::post('/master/sub-category/update/{id}','subCategoryController@subCatagoryMasterUpdate'); //sub-category
 
-Route::get('/master/material','viewController@materialMaster'); //material
-Route::post('/master/material/create','viewController@materialMasterCreate'); //material
-Route::post('/master/material/update/{id}','viewController@materialMasterUpdate'); //material
+Route::get('/master/material','materialController@materialMaster'); //material
+Route::post('/master/material/create','materialController@materialMasterCreate'); //material
+Route::post('/master/material/update/{id}','materialController@materialMasterUpdate'); //material
 
 Route::get('/master/vendor','viewController@vendorMaster'); //vendor
 Route::post('/master/vendor/create','viewController@vendorMasterCreate'); //vendor

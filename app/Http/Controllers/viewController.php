@@ -14,6 +14,13 @@ use DateTime;
 use DatePeriod;
 use DateInterval;
 use App\Company;
+use App\category;
+use App\material;
+use App\subCategory;
+use App\typeOfSeller;
+use App\units;
+use App\vendor;
+use App\workSpot;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -66,21 +73,6 @@ class viewController extends Controller
     
     public function userMaster(REQUEST $request) {
         $pageName = 'Content/Admin/User';
-        return view('index', compact('pageName'));
-    }
-
-    public function catagoryMaster(REQUEST $request) {
-        $pageName = 'Content/Master/category';
-        return view('index', compact('pageName'));
-    }
-    
-    public function subCatagoryMaster(REQUEST $request) {
-        $pageName = 'Content/Master/sub-category';
-        return view('index', compact('pageName'));
-    }
-    
-    public function materialMaster(REQUEST $request) {
-        $pageName = 'Content/Master/material';
         return view('index', compact('pageName'));
     }
     

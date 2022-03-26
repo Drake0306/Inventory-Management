@@ -40,18 +40,18 @@ Route::get('/master/material','materialController@materialMaster'); //material
 Route::post('/master/material/create','materialController@materialMasterCreate'); //material
 Route::post('/master/material/update/{id}','materialController@materialMasterUpdate'); //material
 
-Route::get('/master/vendor','viewController@vendorMaster'); //vendor
-Route::post('/master/vendor/create','viewController@vendorMasterCreate'); //vendor
-Route::post('/master/vendor/update/{id}','viewController@vendorMasterUpdate'); //vendor
+Route::get('/master/vendor','vendorController@vendorMaster'); //vendor
+Route::post('/master/vendor/create','vendorController@vendorMasterCreate'); //vendor
+Route::post('/master/vendor/update/{id}','vendorController@vendorMasterUpdate'); //vendor
 
-Route::get('/master/units','viewController@unitsMaster'); //units
-Route::post('/master/units/create','viewController@unitsMasterCreate'); //units
-Route::post('/master/units/update/{id}','viewController@unitsMasterUpdate'); //units
+Route::get('/master/units','unitsController@unitsMaster'); //units
+Route::post('/master/units/create','unitsController@unitsMasterCreate'); //units
+Route::post('/master/units/update/{id}','unitsController@unitsMasterUpdate'); //units
 
-Route::get('/master/type-of-seller','viewController@typeofSellerMaster'); //type-of-seller
-Route::post('/master/type-of-seller/create','viewController@typeofSellerMasterCreate'); //type-of-seller
-Route::post('/master/type-of-seller/update/{id}','viewController@typeofSellerMasterUpdate'); //type-of-seller
+Route::get('/master/type-of-seller','typeOfSellerController@typeofSellerMaster'); //type-of-seller
+Route::post('/master/type-of-seller/create','typeOfSellerController@typeofSellerMasterCreate'); //type-of-seller
+Route::post('/master/type-of-seller/update/{id}','typeOfSellerController@typeofSellerMasterUpdate'); //type-of-seller
 
-Route::get('/master/work-spots','viewController@workSpotsMaster'); //work-spots
-Route::post('/master/work-spots/create','viewController@workSpotsMasterCreate'); //work-spots
-Route::post('/master/work-spots/update/{id}','viewController@workSpotsMasterUpdate'); //work-spots
+Route::get('/master/work-spots','workSpotController@workSpotsMaster'); //work-spots
+Route::post('/master/work-spots/create','workSpotController@workSpotsMasterCreate'); //work-spots
+Route::post('/master/work-spots/update/{id}','workSpotController@workSpotsMasterUpdate'); //work-spots

@@ -25,20 +25,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($units as $key => $item)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Computer</td>
+                                    <td>{{$key + 1}}</td>
+                                    <td>{{$item->name}}</td>
+                                    @if($item->status == true)
                                     <td><label class="badge bg-success">Active</label></td>
-                                    <td><i class="mdi mdi-border-color" data-bs-toggle="modal" data-bs-target="#updateUnits"></i></td>
+                                    @else
+                                    <td><label class="badge bg-warning text-dark">In-Active</label></td>
+                                    @endif
+                                    <td><i class="mdi mdi-border-color" data-bs-toggle="modal" data-bs-target="#updateUnits{{$item->id}}"></i></td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Food</td>
-                                    <td><label class="badge bg-danger">In Active</label></td>
-                                    <td><i class="mdi mdi-border-color" data-bs-toggle="modal" data-bs-target="#updateUnits"></i></td>
-                                </tr>
+                                
                                 <!-- Modal Create-->
-                                <div class="modal fade" id="updateUnits" data-bs-backdrop="static"
+                                <div class="modal fade" id="updateUnits{{$item->id}}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
@@ -51,13 +51,21 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <form method="POST" id="subForm"
-                                                action="{{url('/master/units/update/1')}}">
+                                                action="{{url('/master/units/update/'.$item->id)}}">
                                                 @csrf
                                                 <div class="modal-body">
                                                     <div class="form-floating">
                                                         <input type="text" name="UnitsName" class="form-control" id="UnitsName"
-                                                            placeholder="" aria-label="UnitsName" required>
+                                                            placeholder="" aria-label="UnitsName" value="{{$item->name}}" required>
                                                         <label for="UnitsName">Units Name *</label>
+                                                    </div>
+                                                    <div class="col-md-6 mt-2">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="status" value="{{$item->status}}" id="flexCheckDefault" @if($item->status == 1) checked @endif>
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                              Status
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -70,8 +78,10 @@
                                     </div>
                                 </div>
                                 {{-- Model End --}}
+                                @endforeach
                             </tbody>
                         </table>
+                        {{@$units->links()}}
                     </div>
                 </div>
             </div>

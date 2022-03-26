@@ -25,20 +25,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($workSpot as $key => $item)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Computer</td>
+                                    <td>{{$key + 1}}</td>
+                                    <td>{{$item->name}}</td>
+                                    @if($item->status == true)
                                     <td><label class="badge bg-success">Active</label></td>
-                                    <td><i class="mdi mdi-border-color" data-bs-toggle="modal" data-bs-target="#updateWork-Spots"></i></td>
+                                    @else
+                                    <td><label class="badge bg-warning text-dark">In-Active</label></td>
+                                    @endif
+                                    <td><i class="mdi mdi-border-color" data-bs-toggle="modal" data-bs-target="#updateWork-Spots{{$item->id}}"></i></td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Food</td>
-                                    <td><label class="badge bg-danger">In Active</label></td>
-                                    <td><i class="mdi mdi-border-color" data-bs-toggle="modal" data-bs-target="#updateWork-Spots"></i></td>
-                                </tr>
+                                
                                 <!-- Modal Create-->
-                                <div class="modal fade" id="updateWork-Spots" data-bs-backdrop="static"
+                                <div class="modal fade" id="updateWork-Spots{{$item->id}}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
@@ -51,13 +51,21 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <form method="POST" id="subForm"
-                                                action="{{url('/master/work-spots/update/1')}}">
+                                                action="{{url('/master/work-spots/update/'.$item->id)}}">
                                                 @csrf
                                                 <div class="modal-body">
                                                     <div class="form-floating">
-                                                        <input type="text" name="typeofSellerName" class="form-control" id="Work-SpotsName"
-                                                            placeholder="" aria-label="Work-SpotsName" required>
+                                                        <input type="text" name="workSpotName" class="form-control" id="Work-SpotsName"
+                                                            placeholder="" aria-label="Work-SpotsName" value="{{$item->name}}" required>
                                                         <label for="Work-SpotsName">Work-Spots Name *</label>
+                                                    </div>
+                                                    <div class="col-md-6 mt-2">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="status" value="{{$item->status}}" id="flexCheckDefault" @if($item->status == 1) checked @endif>
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                              Status
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -70,8 +78,10 @@
                                     </div>
                                 </div>
                                 {{-- Model End --}}
+                                @endforeach
                             </tbody>
                         </table>
+                        {{@$workSpot->links()}}
                     </div>
                 </div>
             </div>
@@ -93,7 +103,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="typeofSellerName" id="Work-SpotsName" placeholder=""
+                        <input type="text" class="form-control" name="workSpotName" id="Work-SpotsName" placeholder=""
                             aria-label="Work-SpotsName" required>
                         <label for="Work-SpotsName">Work-Spots Name *</label>
                     </div>

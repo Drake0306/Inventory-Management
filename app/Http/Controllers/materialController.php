@@ -41,10 +41,8 @@ class materialController extends Controller
         $materialADD = new material();
         $materialADD->categoryID = $request->categoryId;
         $materialADD->subCategoryID = $request->subCategoryId;
-        $materialADD->workSpotID = 1;
-        $materialADD->unitID = 1;
-        // $materialADD->workSpotID = $request->workSpotId;
-        // $materialADD->unitID = $request->unitId;
+        $materialADD->workSpotID = $request->workSpotId;
+        $materialADD->unitID = $request->unitId;
         $materialADD->description = $request->description;
         $materialADD->rate = $request->rate;
         $materialADD->qty = $request->quantity;
@@ -64,10 +62,8 @@ class materialController extends Controller
         $materialUpdate = material::find($id);
         $materialUpdate->categoryID = $request->categoryId;
         $materialUpdate->subCategoryID = $request->subCategoryId;
-        $materialUpdate->workSpotID = 1;
-        $materialUpdate->unitID = 1;
-        // $materialUpdate->workSpotID = $request->workSpotId;
-        // $materialUpdate->unitID = $request->unitId;
+        $materialUpdate->workSpotID = $request->workSpotId;
+        $materialUpdate->unitID = $request->unitId;
         $materialUpdate->description = $request->description;
         $materialUpdate->rate = $request->rate;
         $materialUpdate->qty = $request->quantity;

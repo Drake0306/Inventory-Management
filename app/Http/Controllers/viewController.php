@@ -75,26 +75,6 @@ class viewController extends Controller
         $pageName = 'Content/Admin/User';
         return view('index', compact('pageName'));
     }
-    
-    public function vendorMaster(REQUEST $request) {
-        $pageName = 'Content/Master/vendor';
-        return view('index', compact('pageName'));
-    }
-    
-    public function unitsMaster(REQUEST $request) {
-        $pageName = 'Content/Master/units';
-        return view('index', compact('pageName'));
-    }
-    
-    public function typeofSellerMaster(REQUEST $request) {
-        $pageName = 'Content/Master/typeofSeller';
-        return view('index', compact('pageName'));
-    }
-    
-    public function workSpotsMaster(REQUEST $request) {
-        $pageName = 'Content/Master/work-spots';
-        return view('index', compact('pageName'));
-    }
 
     
 

@@ -28,26 +28,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($vendor as $key => $item)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Computer</td>
-                                    <td>New</td>
-                                    <td>CPU</td>
+                                    <td>{{$key + 1}}</td>
+                                    <td>{{$item->categoryName}}</td>
+                                    <td>{{$item->subCategoryName}}</td>
+                                    <td>{{$item->name}}</td>
+                                    @if($item->status == true)
                                     <td><label class="badge bg-success">Active</label></td>
+                                    @else
+                                    <td><label class="badge bg-warning text-dark">In-Active</label></td>
+                                    @endif
                                     <td><i class="mdi mdi-border-color" data-bs-toggle="modal"
-                                            data-bs-target="#updateVendor"></i></td>
+                                            data-bs-target="#updateVendor{{$item->id}}"></i></td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Food</td>
-                                    <td>Old</td>
-                                    <td>Rice</td>
-                                    <td><label class="badge bg-danger">In Active</label></td>
-                                    <td><i class="mdi mdi-border-color" data-bs-toggle="modal"
-                                            data-bs-target="#updateVendor"></i></td>
-                                </tr>
+                                
                                 <!-- Modal Create-->
-                                <div class="modal fade" id="updateVendor" data-bs-backdrop="static"
+                                <div class="modal fade" id="updateVendor{{$item->id}}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -60,7 +57,7 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <form method="POST" id="subForm"
-                                                action="{{url('/master/vendor/update/1')}}">
+                                                action="{{url('/master/vendor/update/'.$item->id)}}">
                                                 @csrf
                                                 <div class="modal-body">
                                                     <div class="row">
@@ -69,10 +66,11 @@
                                                                 <select class="form-select" id="categoryList"
                                                                     name="categoryId"
                                                                     aria-label="Floating label select example">
-                                                                    <option selected>Select</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
+                                                                    <option selected value="{{$item->categoryID}}">{{$item->categoryName}}</option>
+                                                                    <option disabled></option>
+                                                                    @foreach($category as $val)
+                                                                        <option value="{{$val->id}}">{{$val->name}}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 <label for="categoryList">Category List * </label>
                                                             </div>
@@ -82,10 +80,11 @@
                                                                 <select class="form-select" id="type"
                                                                     name="type"
                                                                     aria-label="Floating label select example">
-                                                                    <option selected>Select</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
+                                                                    <option selected value="{{$item->type}}">{{$item->subCategoryName}}</option>
+                                                                    <option disabled></option>
+                                                                    @foreach($subCategory as $val)
+                                                                        <option value="{{$val->id}}">{{$val->name}}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 <label for="type">Type</label>
                                                             </div>
@@ -93,14 +92,14 @@
                                                         <div class="col-md-6">
                                                             <div class="form-floating mt-3">
                                                                 <input type="text" class="form-control" name="name"
-                                                                    id="name" placeholder="" aria-label="name"
+                                                                    id="name" placeholder="" value="{{$val->name}}" aria-label="name"
                                                                     required>
                                                                 <label for="name">Name *</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-floating mt-3">
-                                                                <textarea style="height: auto;" class="form-control" id="address" name="address" rows="3"></textarea>
+                                                                <textarea style="height: auto;" class="form-control" id="address" name="address" rows="3">{{$item->address}}</textarea>
                                                                 <label for="address">Address *</label>
                                                             </div>
                                                         </div>
@@ -109,7 +108,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-floating mt-3">
                                                                 <input type="text" class="form-control" name="phone"
-                                                                    id="phone" placeholder="" aria-label="phone"
+                                                                    id="phone" placeholder="" value="{{$item->phone}}" aria-label="phone"
                                                                     required>
                                                                 <label for="phone">Phone *</label>
                                                             </div>
@@ -117,9 +116,17 @@
                                                         <div class="col-md-6">
                                                             <div class="form-floating mt-3">
                                                                 <input type="email" class="form-control" name="email"
-                                                                    id="email" placeholder="" aria-label="email"
+                                                                    id="email" placeholder="" value="{{$item->email}}" aria-label="email"
                                                                     required>
                                                                 <label for="email">Email ID *</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 mt-2">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" name="status" value="{{$item->status}}" id="flexCheckDefault" @if($item->status == 1) checked @endif>
+                                                                <label class="form-check-label" for="flexCheckDefault">
+                                                                  Status
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -134,8 +141,10 @@
                                     </div>
                                 </div>
                                 {{-- Model End --}}
+                                @endforeach
                             </tbody>
                         </table>
+                        {{@$vendor->links()}}
                     </div>
                 </div>
             </div>
@@ -163,9 +172,9 @@
                                     name="categoryId"
                                     aria-label="Floating label select example">
                                     <option selected>Select</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    @foreach($category as $val)
+                                    <option value="{{$val->id}}">{{$val->name}}</option>
+                                    @endforeach
                                 </select>
                                 <label for="categoryList">Category List * </label>
                             </div>
@@ -176,9 +185,9 @@
                                     name="type"
                                     aria-label="Floating label select example">
                                     <option selected>Select</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    @foreach($subCategory as $val)
+                                    <option value="{{$val->id}}">{{$val->name}}</option>
+                                    @endforeach
                                 </select>
                                 <label for="type">Type</label>
                             </div>

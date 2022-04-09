@@ -80,9 +80,9 @@
                                                                 <select class="form-select" id="type"
                                                                     name="type"
                                                                     aria-label="Floating label select example">
-                                                                    <option selected value="{{$item->type}}">{{$item->subCategoryName}}</option>
+                                                                    <option selected value="{{$item->type}}">{{$item->typeName}}</option>
                                                                     <option disabled></option>
-                                                                    @foreach($subCategory as $val)
+                                                                    @foreach($type as $val)
                                                                         <option value="{{$val->id}}">{{$val->name}}</option>
                                                                     @endforeach
                                                                 </select>
@@ -185,7 +185,7 @@
                                     name="type"
                                     aria-label="Floating label select example">
                                     <option selected>Select</option>
-                                    @foreach($subCategory as $val)
+                                    @foreach($type as $val)
                                     <option value="{{$val->id}}">{{$val->name}}</option>
                                     @endforeach
                                 </select>

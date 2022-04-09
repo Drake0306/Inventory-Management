@@ -14,6 +14,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{url('/master/material')}}">Material</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url('/master/vendor')}}">Vendor</a></li>
                     <hr class="text-light" style="width: 10vh">
+                    <li class="nav-item"><a class="nav-link" href="{{url('/master/type')}}">Type</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url('/master/units')}}">Unit's</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url('/master/type-of-seller')}}">Type of Seller</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url('/master/work-spots')}}">Work Spot's</a></li>

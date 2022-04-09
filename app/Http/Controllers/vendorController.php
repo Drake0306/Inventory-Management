@@ -17,21 +17,22 @@ use App\material;
 use App\workSpot;
 use App\units;
 use App\vendor;
+use App\type;
 
 class vendorController extends Controller
 {
         
     public function vendorMaster(REQUEST $request) {
-        $vendor = vendor::select('vendor.categoryID', 'vendor.type', 'vendor.name', 'vendor.address', 'vendor.phone', 'vendor.email', 'vendor.status', 'vendor.id', 'category.name as categoryName', 'sub_category.name as subCategoryName')
+        $vendor = vendor::select('vendor.categoryID', 'vendor.type', 'vendor.name', 'vendor.address', 'vendor.phone', 'vendor.email', 'vendor.status', 'vendor.id', 'category.name as categoryName', 'type.name as typeName')
                             ->leftJoin('category', 'category.id', '=', 'vendor.categoryID')
-                            ->leftJoin('sub_category', 'sub_category.id', '=', 'vendor.type')
+                            ->leftJoin('type', 'type.id', '=', 'vendor.type')
                             ->paginate(8);
 
         $category = category::where('status', '1')->get();
-        $subCategory = subCategory::where('status', '1')->get();
+        $type = type::where('status', '1')->get();
 
         $pageName = 'Content/Master/vendor';
-        return view('index', compact('pageName','vendor','category','subCategory'));
+        return view('index', compact('pageName','vendor','category','type'));
     }
 
     public function vendorMasterCreate(REQUEST $request) {

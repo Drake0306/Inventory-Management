@@ -48,6 +48,10 @@ Route::get('/master/units','unitsController@unitsMaster'); //units
 Route::post('/master/units/create','unitsController@unitsMasterCreate'); //units
 Route::post('/master/units/update/{id}','unitsController@unitsMasterUpdate'); //units
 
+Route::get('/master/type','typeController@typeMaster'); //type
+Route::post('/master/type/create','typeController@typeMasterCreate'); //type
+Route::post('/master/type/update/{id}','typeController@typeMasterUpdate'); //type
+
 Route::get('/master/type-of-seller','typeOfSellerController@typeofSellerMaster'); //type-of-seller
 Route::post('/master/type-of-seller/create','typeOfSellerController@typeofSellerMasterCreate'); //type-of-seller
 Route::post('/master/type-of-seller/update/{id}','typeOfSellerController@typeofSellerMasterUpdate'); //type-of-seller

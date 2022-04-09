@@ -74,6 +74,7 @@
                                                                     <option value="2">Officer</option>
                                                                     <option value="3">Staff</option>
                                                                     <option value="3">Guard</option>
+                                                                    <option value="3">Store Keeper</option>
                                                                 </select>
                                                                 <label for="userType">User Type * </label>
                                                             </div>
@@ -169,6 +170,7 @@
                                     <option value="2">Officer</option>
                                     <option value="3">Staff</option>
                                     <option value="3">Guard</option>
+                                    <option value="3">Store Keeper</option>
                                 </select>
                                 <label for="userType">User Type * </label>
                             </div>
